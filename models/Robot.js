@@ -7,21 +7,26 @@ class Robot {
 
 
     move() {
-        if(this.position[0] <= 0 || this.position[0] >= 4) {
-            return;
-        }
-        if(this.position[1] <= 0 || this.position[1] >= 4) {
-            return;
-        }
-
         if(this.direction === "NORTH") {
-            this.position[1] ++; 
+            if(this.position[1]+1 > 4) {
+                return;
+            }
+            this.position[1] ++
         } else if(this.direction === "EAST") {
+            if(this.position[0]+1 > 4) {
+                return;
+            }
             this.position[0] ++;
         } else if (this.direction === "SOUTH") {
+            if(this.position[1]-1 < 0) {
+                return;
+            }
             this.position[1] --;
         } else if(this.direction === "WEST") {
-            this.position[0] --;
+            if(this.position[1]-1 < 0) {
+                return;
+            }
+            this.position[1] --;
         }
     }
 
