@@ -2,31 +2,27 @@ const Robot = require("./models/Robot");
 
 
 const args = process.argv.slice(2);
-const position = args[0].split(",");
-if(position.length !==3) {
-    console.error(`Invalid position ${position}, examples of valid positions: 0,0 || 2,4 || 3,3`);
-}
-
-const position2 = position.map(Number);
-if(position2.length !== 2) {
-    console.error(`Invalid position ${position}, examples of valid positions: 0,0 || 2,4 || 3,3`);
+if(args[0] !== "PLACE") {
+    console.error(`Expected PLACE, received ${args[0]}`);
     return;
 }
 
-
-const direction = args[1];
-const availableDirections = /NORTH|EAST|SOUTH|WEST/;
-if(!availableDirections.test(direction)) {
-    console.error(`Invalid direction ${direction}, available directions: NORTH EAST SOUTH WEST`);
+const location = args[1].split(",");
+if(location.length !== 3) {
+    console.error("Invalid place location");
     return;
 }
+const position = [+location[0], +location[1]];
+const direction = location[2];
 
-const newRobot = new Robot(position2, direction);
+
+const newRobot = new Robot(position, direction);
 
 const commands = args.slice(2);
-var regex = /LEFT|RIGHT|MOVE|REPORT/;
+var regex = /LEFT|RIGHT|MOVE|REPORT|PLACE/;
 
-commands.forEach(command => {
+for(var i = 0; i < commands.length; i++) {
+    var command = commands[i];
     if (regex.test(command)) {
         switch (command) {
             case "MOVE":
@@ -42,13 +38,18 @@ commands.forEach(command => {
             case "REPORT":
                 newRobot.report();
                 break;
+            case "PLACE":
+                newRobot.place(commands[i+1])
+                i++
+                break;
             default:
                 break;
         }
     } else {
         console.error(`Command ${command} is not found, available commands: |MOVE|LEFT|RIGHT|REPORT|`);
     }
-})
+}
+
 
 
 

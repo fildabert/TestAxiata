@@ -5,6 +5,17 @@ class Robot {
         this.possibleDirections = ["NORTH", "EAST", "SOUTH", "WEST"];
     }
 
+    place(coordinates) {
+        const location = coordinates.split(",");
+        if(location.length !== 3) {
+            console.error("Invalid place location");
+            return;
+        }
+        const position = [+location[0], +location[1]];
+        const direction = location[2];
+        this.position = position;
+        this.direction = direction;
+    }
 
     move() {
         if(this.direction === "NORTH") {
