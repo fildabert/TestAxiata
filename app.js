@@ -7,16 +7,17 @@ if(args[0] !== "PLACE") {
     return;
 }
 
-const location = args[1].split(",");
-if(location.length !== 3) {
-    console.error("Invalid place location");
-    return;
-}
-const position = [+location[0], +location[1]];
-const direction = location[2];
+// const location = args[1].split(",");
+// if(location.length !== 3) {
+//     console.error("Invalid place location");
+//     return;
+// }
+// const position = [+location[0], +location[1]];
+// const direction = location[2];
 
 
-const newRobot = new Robot(position, direction);
+const newRobot = new Robot();
+newRobot.place(args[1]);
 
 const commands = args.slice(2);
 var regex = /LEFT|RIGHT|MOVE|REPORT|PLACE/;

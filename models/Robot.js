@@ -22,7 +22,7 @@ class Robot {
             console.error("Invalid place location");
             return;
         }
-
+        console.log(position)
 
         this.position = position;
         this.direction = direction;
@@ -45,10 +45,10 @@ class Robot {
             }
             this.position[1] --;
         } else if(this.direction === "WEST") {
-            if(this.position[1]-1 < 0) {
+            if(this.position[0]-1 < 0) {
                 return;
             }
-            this.position[1] --;
+            this.position[0] --;
         }
     }
 
