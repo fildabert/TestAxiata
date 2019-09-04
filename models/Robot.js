@@ -13,6 +13,17 @@ class Robot {
         }
         const position = [+location[0], +location[1]];
         const direction = location[2];
+
+        if(position[0] > 4 || position[0] < 0) {
+            console.error("Invalid place location");
+            return;
+        }
+        if(position[1] > 4 || position[1] < 0) {
+            console.error("Invalid place location");
+            return;
+        }
+
+
         this.position = position;
         this.direction = direction;
     }

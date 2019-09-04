@@ -7,10 +7,19 @@ const newRobot = new Robot()
 
 describe("Robot Testing", function (){
     describe('Place Robot', function () {
-        it("should not place a Robot on the table if the coordinates are invalid", function() {
+        it("should not place a Robot on the table if the command is invalid", function() {
             const coordinates = "ASDASDADS"
             newRobot.place(coordinates);
-            console.log(newRobot)
+            
+            expect(newRobot.position).to.be.undefined;
+            expect(newRobot.direction).to.be.undefined;
+        })
+        it("should not place a Robot on the table if the coordinates are off the chart", function() {
+            const coordinates = "0,5,NORTH"
+            newRobot.place(coordinates);
+            
+            expect(newRobot.position).to.be.undefined;
+            expect(newRobot.direction).to.be.undefined;
         })
         it("should place a Robot on the table", function() {
              const coordinates = "0,0,NORTH"
@@ -24,6 +33,8 @@ describe("Robot Testing", function (){
              expect(newRobot.direction).to.equal(direction);
         }) 
     })
+
+    
     
     
 })
