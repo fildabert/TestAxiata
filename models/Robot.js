@@ -6,23 +6,31 @@ class Robot {
     }
 
     place(coordinates) {
+        if(!coordinates) {
+            return;
+        }
         const location = coordinates.split(",");
         if(location.length !== 3) {
-            console.error("Invalid place location");
+            console.error("Invalid coordinates, PLACE X,Y,F (Accepted values of X and Y are within the range of 0-4) example of a valid coordinate: PLACE 0,0,NORTH");
             return;
         }
         const position = [+location[0], +location[1]];
+        const validDirections = /NORTH|EAST|SOUTH|WEST/;
         const direction = location[2];
+        if(!validDirections.test(direction)) {
+            console.error(`${direction} is an invalid direction, valid directions: NORTH|EAST|SOUTH|WEST`)
+            return;
+        }
 
         if(position[0] > 4 || position[0] < 0) {
-            console.error("Invalid place location");
+            console.error("Invalid coordinates, PLACE X,Y,F (Accepted values of X and Y are within the range of 0-4) example of a valid coordinate: PLACE 0,0,NORTH");
             return;
         }
         if(position[1] > 4 || position[1] < 0) {
-            console.error("Invalid place location");
+            console.error("Invalid coordinates, PLACE X,Y,F (Accepted values of X and Y are within the range of 0-4) example of a valid coordinate: PLACE 0,0,NORTH");
             return;
         }
-        console.log(position)
+
 
         this.position = position;
         this.direction = direction;
