@@ -5,8 +5,27 @@ class Robot {
         this.possibleDirections = ["NORTH", "EAST", "SOUTH", "WEST"];
     }
 
+
+    move() {
+        if(this.position[0] <= 0 || this.position[0] >= 4) {
+            return;
+        }
+        if(this.position[1] <= 0 || this.position[1] >= 4) {
+            return;
+        }
+
+        if(this.direction === "NORTH") {
+            this.position[1] ++; 
+        } else if(this.direction === "EAST") {
+            this.position[0] ++;
+        } else if (this.direction === "SOUTH") {
+            this.position[1] --;
+        } else if(this.direction === "WEST") {
+            this.position[0] --;
+        }
+    }
+
     turn(direction) {
-        console.log(this)
         var currentFacingDirection = this.possibleDirections.indexOf(this.direction);
         if(direction === "RIGHT") {
             currentFacingDirection ++;
@@ -25,7 +44,10 @@ class Robot {
             currentFacingDirection = 0;
         }
         this.direction = this.possibleDirections[currentFacingDirection];
-        console.log(this)
+    }
+
+    report() {
+        console.log(this);
     }
 }
 

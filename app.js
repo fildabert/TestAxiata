@@ -1,5 +1,17 @@
 const Robot = require("./models/Robot")
 
-const newRobot = new Robot(0, "WEST")
+
+// PLACE 1,2,EAST
+// MOVE
+// MOVE
+// LEFT
+// MOVE
+// REPORT
+
+const newRobot = new Robot([1,2], "EAST")
 const args = process.argv.slice(2)
-newRobot.turn("RIGHT")
+newRobot.move()
+newRobot.move()
+newRobot.turn("LEFT")
+newRobot.move()
+newRobot.report()
