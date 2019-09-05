@@ -7,6 +7,7 @@ class Robot {
 
     place(coordinates) {
         if(!coordinates) {
+            console.error("Invalid coordinates, PLACE X,Y,F (Accepted values of X and Y are within the range of 0-4) example of a valid coordinate: PLACE 0,0,NORTH");
             return;
         }
         const location = coordinates.split(",");
